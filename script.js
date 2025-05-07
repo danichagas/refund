@@ -43,7 +43,7 @@ function expenseAdd(newExpense) {
         expenseItem.classList.add('expense')
 
         const expenseIcon = document.createElement('img')
-        expenseIcon.setAttribute("src", `img/${newExpense.category_id}.svg`)
+        expenseIcon.setAttribute('src', `img/${newExpense.category_id}.svg`)
         expenseIcon.setAttribute('alt', newExpense.category_name)
 
         const expenseInfo = document.createElement('div')
@@ -57,8 +57,14 @@ function expenseAdd(newExpense) {
 
         expenseInfo.append(expenseName, expenseCategory)
 
-        expenseItem.append(expenseIcon, expenseInfo)
+        const expenseAmount = document.createElement('span')
+        expenseAmount.classList.add('expense-amount')
+        expenseAmount.innerHTML = `<small>R$</small>${newExpense.amount.toUpperCase().replace('R$', '')}`
+
+        expenseItem.append(expenseIcon, expenseInfo, expenseAmount)
+
         expenseList.append(expenseItem)
+
     } catch (error) {
         alert('Não foi possível atualizar a lista de despesas.')
         console.log(error)
